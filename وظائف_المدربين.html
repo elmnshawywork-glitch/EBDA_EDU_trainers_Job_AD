@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>التقديم لوظائف المدربين — ابدأ اديو</title>
+<style>
+  :root{
+    --blue:#57B1C9; --blue-dark:#1F5C73; --blue-soft:#E8F4F8; --blue-mid:#3D8FA8;
+    --ink:#1A1A1A; --muted:#5f5f5f; --line:#cfe3ea; --danger:#c0392b; --ok:#2e7d32; --bg:#f4f7f4;
+  }
+  *{box-sizing:border-box;font-family:"Segoe UI",Tahoma,Arial,sans-serif;}
+  body{margin:0;background:var(--bg);color:var(--ink);direction:rtl;line-height:1.75;}
+  .bar{height:5px;background:var(--blue);}
+  header{background:var(--blue-dark);color:#fff;padding:26px 20px;text-align:center;position:relative;}
+  header h1{margin:0 0 4px;font-size:22px;}
+  header .en-name{font-size:15px;font-weight:600;letter-spacing:.4px;opacity:.95;margin-bottom:6px;direction:ltr;}
+  header p{margin:0;font-size:14px;opacity:.92;}
+  .logo-wrap{position:absolute;top:16px;left:20px;width:82px;height:70px;background:#fff;border:1.5px dashed #cfe3ea;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;padding:4px;}
+  .logo-wrap #logoPlaceholder{color:var(--blue-dark);font-weight:700;font-size:11px;text-align:center;line-height:1.3;}
+  .logo-wrap img{max-width:100%;max-height:100%;object-fit:contain;}
+  @media(max-width:560px){.logo-wrap{position:static;margin:0 auto 12px;}}
+  .spec-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:14px;}
+  .spec-cat{background:#fafdff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .spec-cat h4{margin:0 0 8px;color:var(--blue-dark);font-size:14.5px;border-bottom:1.5px solid var(--blue-soft);padding-bottom:6px;}
+  .spec-cat ul{margin:0;padding-inline-start:18px;}
+  .spec-cat li{font-size:13px;margin:3px 0;color:#333;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 14px 90px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:20px;}
+  h2.sec{font-size:19px;color:var(--blue-dark);margin:2px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--blue-soft);}
+  .intro{font-size:15px;color:#333;}
+  .intro b{color:var(--blue-dark);}
+  ul.cond{margin:10px 0;padding-inline-start:22px;}
+  ul.cond li{margin:7px 0;font-size:14.5px;}
+  .specs-note{background:var(--blue-soft);border-right:3px solid var(--blue);padding:12px 15px;border-radius:8px;font-size:14px;margin-top:12px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;}
+  @media(max-width:680px){.grid{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;gap:5px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:14px;font-weight:600;color:#333;}
+  label .req{color:var(--danger);}
+  input,select,textarea{font-size:15px;padding:10px 12px;border:1.5px solid var(--line);border-radius:9px;background:#fff;font-family:inherit;width:100%;transition:.15s;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(87,177,201,.22);}
+  .hint{font-size:12px;color:var(--muted);}
+  .btn{font-family:inherit;font-size:16px;font-weight:700;padding:13px 30px;border-radius:10px;border:none;cursor:pointer;transition:.15s;}
+  .btn-primary{background:var(--blue);color:#fff;}
+  .btn-primary:hover{background:var(--blue-dark);}
+  .btn-primary:disabled{opacity:.6;cursor:not-allowed;}
+  .cv-box{border:1.5px dashed var(--blue);border-radius:10px;padding:16px;text-align:center;background:#fafdff;cursor:pointer;}
+  .cv-box.has{border-color:var(--ok);background:#f2fbf4;}
+  .cv-box .cv-name{font-size:13px;color:var(--ok);font-weight:700;margin-top:6px;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--blue-dark);color:#fff;padding:13px 26px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:.3s;z-index:80;max-width:92%;text-align:center;}
+  .toast.show{opacity:1;}
+  .success{display:none;text-align:center;padding:40px 20px;}
+  .success .ic{font-size:56px;}
+  .success h2{color:var(--ok);margin:10px 0;}
+  .success .code{background:var(--blue-soft);color:var(--blue-dark);font-weight:800;font-size:20px;padding:8px 18px;border-radius:10px;display:inline-block;margin-top:6px;}
+</style>
+</head>
+<body>
+<div id="errBox" style="display:none;position:fixed;top:0;left:0;right:0;background:#c0392b;color:#fff;padding:12px;z-index:99999;font-size:13px;direction:rtl;font-family:Tahoma;max-height:40vh;overflow:auto"></div>
+<script>
+window.onerror=function(msg,src,line){
+  if(!msg||/Script error/i.test(String(msg))||(line===0&&!src))return false;
+  var b=document.getElementById('errBox');
+  if(b){b.style.display='block';b.innerHTML+='<div>⚠️ '+msg+' (سطر '+line+')</div>';}
+  return false;
+};
+</script>
+<div class="bar"></div>
+<header>
+  <div class="logo-wrap" id="logoWrap" onclick="document.getElementById('logoInput').click()" title="اضغط لإضافة شعار الشركة">
+    <span id="logoPlaceholder">شعار<br>الشركة</span>
+    <img id="logoImg" style="display:none" alt="شعار الشركة">
+  </div>
+  <input type="file" id="logoInput" accept="image/*" style="display:none">
+  <h1>الإعلان عن وظائف مدربين — ابدأ اديو</h1>
+  <div class="en-name">EBDA EDU for Development &amp; Training</div>
+  <p>مشروع تشغيل وإدارة مراكز التدريب المهني — وزارة العمل (EVOTS)</p>
+</header>
+<div class="wrap">
+
+  <!-- الإعلان والشروط -->
+  <div class="card">
+    <h2 class="sec">📢 عن الوظيفة</h2>
+    <p class="intro">تعلن <b>شركة ابدأ اديو للتطوير والتدريب</b> عن حاجتها إلى <b>مدربين مؤهلين</b> في مختلف التخصصات الفنية والمهنية والحياتية، للعمل ضمن مراكز التدريب المهني المنتشرة في محافظات الجمهورية.</p>
+
+    <h2 class="sec" style="margin-top:20px">✅ شروط الالتحاق</h2>
+    <ul class="cond">
+      <li>مؤهل علمي مناسب للتخصص المتقدَّم له (فني / متوسط / عالٍ حسب الوظيفة).</li>
+      <li>خبرة عملية أو تدريبية سابقة في مجال التخصص.</li>
+      <li>يُفضَّل الحاصلون على شهادة إعداد مدربين <b>TOT</b>.</li>
+      <li>القدرة على إدارة قاعة تدريبية ونقل المهارة عملياً للمتدربين.</li>
+      <li>الالتزام والانضباط والقدرة على العمل ضمن فريق.</li>
+      <li>الاستعداد للعمل في المركز التابع لمحافظة المتقدم أو القريب منها.</li>
+      <li>إرفاق السيرة الذاتية محدّثة (CV).</li>
+    </ul>
+
+    <h2 class="sec" style="margin-top:20px">🧰 التخصصات المطلوبة</h2>
+    <div class="spec-cats">
+      <div class="spec-cat">
+        <h4>🔧 التخصصات الفنية والصناعية</h4>
+        <ul>
+          <li>كهرباء</li><li>لحام</li><li>اللحام المتقدم (أرجون/CO2)</li>
+          <li>خراطة</li><li>حدادة</li><li>سباكة</li><li>نجارة</li>
+          <li>ميكانيكا السيارات</li><li>الوميتال</li><li>لف موتورات</li>
+          <li>تبريد وتكييف</li><li>تكييف وتبريد متقدم</li>
+          <li>صيانة أجهزة منزلية</li><li>صيانة أجهزة محمول</li>
+          <li>إلكترونيات</li><li>دش ومحمول</li>
+        </ul>
+      </div>
+      <div class="spec-cat">
+        <h4>💻 تكنولوجيا المعلومات والتصميم</h4>
+        <ul>
+          <li>الحاسب الآلي</li><li>صيانة حاسب آلي</li>
+          <li>تكنولوجيا المعلومات (IT)</li><li>البرمجة</li>
+          <li>الشبكات</li><li>الأمن السيبراني</li>
+          <li>الذكاء الاصطناعي (AI)</li>
+          <li>الروبوتات والأنظمة المدمجة (Embedded)</li>
+          <li>التصميم الجرافيكي</li><li>الفنون الرقمية</li>
+          <li>التسويق الإلكتروني</li>
+        </ul>
+      </div>
+      <div class="spec-cat">
+        <h4>🌍 الطاقة والاتصالات والسلامة</h4>
+        <ul>
+          <li>طاقة شمسية</li><li>الطاقة المتجددة</li>
+          <li>الاتصالات</li><li>صيانة المعدات الطبية</li>
+          <li>السلامة والصحة المهنية</li>
+          <li>اللوجستيات وسلاسل الإمداد</li>
+          <li>عمالة تحميل وتنزيل حاويات الموانئ</li>
+        </ul>
+      </div>
+      <div class="spec-cat">
+        <h4>✂️ الحرف والمشغولات</h4>
+        <ul>
+          <li>تفصيل وخياطة</li><li>تطريز</li>
+          <li>التطريز والأشغال اليدوية</li><li>كروشيه</li>
+          <li>خرز</li><li>أرابيسك</li><li>رسم وزخرفة</li>
+          <li>مشغولات يدوية</li><li>الموبيليا والديكور</li>
+        </ul>
+      </div>
+      <div class="spec-cat">
+        <h4>🍽️ الضيافة والتجميل</h4>
+        <ul>
+          <li>الطهي والإنتاج الغذائي</li>
+          <li>الحلويات والمخبوزات</li>
+          <li>الفندقة والضيافة</li><li>فندقة</li>
+          <li>السياحة والإرشاد</li>
+          <li>التجميل والكوافير</li>
+          <li>العناية بالبشرة (سكين كير)</li>
+        </ul>
+      </div>
+      <div class="spec-cat">
+        <h4>📊 الإدارة والمهارات واللغات</h4>
+        <ul>
+          <li>إدارة الأعمال</li><li>المحاسبة وبرامجها</li>
+          <li>خدمة العملاء والكول سنتر</li>
+          <li>مهارات حياتية</li><li>مهارات سلوكية (Soft Skills)</li>
+          <li>لغات</li>
+          <li><b>محاضر لغة إنجليزية</b></li>
+          <li><b>محاضر لغة إيطالية</b></li>
+          <li><b>محاضر لغة ألمانية</b></li>
+        </ul>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:10px">اختر تخصصك الدقيق من القائمة داخل الاستمارة، أو اكتبه في «تخصص آخر» إن لم تجده.</p>
+    <div style="text-align:center;margin-top:18px">
+      <button type="button" class="btn btn-primary" id="applyBtn">🚀 التقديم للوظيفة</button>
+    </div>
+  </div>
+
+  <!-- استمارة التقديم -->
+  <div class="card" id="formCard" style="display:none">
+    <h2 class="sec">📝 استمارة التقديم</h2>
+    <p class="hint">الحقول المميّزة بـ <span style="color:#c0392b">*</span> مطلوبة. تُسجَّل بياناتك مباشرة في قاعدة بيانات المدربين.</p>
+    <div class="grid">
+      <div class="field"><label>الاسم بالكامل <span class="req">*</span></label><input id="f_name" placeholder="الاسم رباعي"></div>
+      <div class="field"><label>النوع <span class="req">*</span></label>
+        <select id="f_gender"><option value="">— اختر —</option><option>ذكر</option><option>أنثى</option></select></div>
+      <div class="field"><label>رقم الموبايل <span class="req">*</span></label><input id="f_mobile" type="tel" inputmode="tel" placeholder="01xxxxxxxxx"></div>
+      <div class="field"><label>البريد الإلكتروني</label><input id="f_email" type="email" placeholder="example@mail.com"></div>
+      <div class="field"><label>المحافظة <span class="req">*</span></label>
+        <select id="f_gov"><option value="">— اختر المحافظة —</option></select></div>
+      <div class="field"><label>التخصص الرئيسي <span class="req">*</span></label>
+        <select id="f_mainspec"><option value="">— اختر —</option>
+          <option>التدريب الفني</option>
+          <option>المهارات الحياتية</option>
+          <option>اللغات</option>
+          <option>إدارة الأعمال</option>
+        </select></div>
+      <div class="field"><label>التخصص الدقيق <span class="req">*</span></label>
+        <select id="f_subspec"><option value="">— اختر التخصص الدقيق —</option>
+          <option>تفصيل وخياطة</option>
+          <option>تبريد وتكييف</option>
+          <option>صيانة أجهزة منزلية</option>
+          <option>لحام</option>
+          <option>خراطة</option>
+          <option>صيانة أجهزة محمول</option>
+          <option>نجارة</option>
+          <option>ميكانيكا السيارات</option>
+          <option>الحاسب الآلي</option>
+          <option>سباكة</option>
+          <option>كهرباء</option>
+          <option>الوميتال</option>
+          <option>رسم وزخرفة</option>
+          <option>صيانة حاسب آلي</option>
+          <option>دش ومحمول</option>
+          <option>لغات</option>
+          <option>طاقة شمسية</option>
+          <option>حدادة</option>
+          <option>تطريز</option>
+          <option>خرز</option>
+          <option>كروشيه</option>
+          <option>أرابيسك</option>
+          <option>إلكترونيات</option>
+          <option>فندقة</option>
+          <option>مشغولات يدوية</option>
+          <option>لف موتورات</option>
+          <option>مهارات حياتية</option>
+          <option>مهارات سلوكية (Soft Skills)</option>
+          <option>تكنولوجيا المعلومات (IT)</option>
+          <option>البرمجة</option>
+          <option>التصميم الجرافيكي</option>
+          <option>التسويق الإلكتروني</option>
+          <option>المحاسبة وبرامجها</option>
+          <option>إدارة الأعمال</option>
+          <option>خدمة العملاء والكول سنتر</option>
+          <option>التجميل والكوافير</option>
+          <option>العناية بالبشرة (سكين كير)</option>
+          <option>الطهي والإنتاج الغذائي</option>
+          <option>الحلويات والمخبوزات</option>
+          <option>الفندقة والضيافة</option>
+          <option>السياحة والإرشاد</option>
+          <option>التطريز والأشغال اليدوية</option>
+          <option>الموبيليا والديكور</option>
+          <option>تكييف وتبريد متقدم</option>
+          <option>الطاقة المتجددة</option>
+          <option>صيانة المعدات الطبية</option>
+          <option>اللحام المتقدم (أرجون/CO2)</option>
+          <option>السلامة والصحة المهنية</option>
+          <option>الاتصالات</option>
+          <option>اللوجستيات وسلاسل الإمداد</option>
+          <option>عمالة تحميل وتنزيل حاويات الموانئ</option>
+          <option>الشبكات</option>
+          <option>الأمن السيبراني</option>
+          <option>الفنون الرقمية</option>
+          <option>الروبوتات والأنظمة المدمجة (Embedded)</option>
+          <option>الذكاء الاصطناعي (AI)</option>
+          <option>محاضر لغة إنجليزية</option>
+          <option>محاضر لغة إيطالية</option>
+          <option>محاضر لغة ألمانية</option>
+          <option value="__other__">تخصص آخر (اكتبه)</option>
+        </select>
+        <input id="f_subspec_other" placeholder="اكتب تخصصك الدقيق" style="display:none;margin-top:6px">
+      </div>
+      <div class="field"><label>المؤهل العلمي <span class="req">*</span></label>
+        <select id="f_qual"><option value="">— اختر —</option>
+          <option>دبلوم فني / صنايع</option>
+          <option>دبلوم متوسط</option>
+          <option>دبلوم فوق المتوسط</option>
+          <option>بكالوريوس / ليسانس</option>
+          <option>دراسات عليا / ماجستير</option>
+          <option>دكتوراه</option>
+          <option>أخرى</option>
+        </select></div>
+      <div class="field"><label>سنوات الخبرة <span class="req">*</span></label>
+        <select id="f_exp"><option value="">— اختر —</option>
+          <option>أقل من سنة</option>
+          <option>1 - 3 سنوات</option>
+          <option>3 - 5 سنوات</option>
+          <option>5 - 10 سنوات</option>
+          <option>أكثر من 10 سنوات</option>
+        </select></div>
+      <div class="field"><label>شهادة TOT (إعداد مدربين)</label>
+        <select id="f_tot"><option value="">— اختر —</option><option>نعم — حاصل عليها</option><option>لا</option><option>قيد الحصول عليها</option></select></div>
+      <div class="field"><label>نوع التعاقد المفضّل</label>
+        <select id="f_contract"><option value="">— اختر —</option>
+          <option>فريلانس</option>
+          <option>دوام جزئي</option>
+          <option>دوام كامل</option>
+          <option>بالساعة</option>
+          <option>بالمشروع</option>
+        </select></div>
+      <div class="field"><label>الأجر المتوقع / الساعة (جنيه)</label><input id="f_wage" type="number" min="0" placeholder="مثال: 150"></div>
+      <div class="field"><label>مصدر التعرف على الإعلان</label>
+        <select id="f_source"><option value="">— اختر —</option>
+          <option>فيسبوك</option>
+          <option>واتساب</option>
+          <option>لينكدإن</option>
+          <option>صديق / زميل</option>
+          <option>موقع الشركة</option>
+          <option>مركز تدريب</option>
+          <option>أخرى</option>
+        </select></div>
+      <div class="field full"><label>ملاحظات إضافية</label><textarea id="f_notes" rows="2" placeholder="أي معلومات تودّ إضافتها"></textarea></div>
+
+      <div class="field full"><label>السيرة الذاتية (CV) <span class="req">*</span></label>
+        <div class="cv-box" id="cvBox" onclick="document.getElementById('f_cv').click()">
+          <div>📄 اضغط لرفع ملف السيرة الذاتية</div>
+          <div class="hint">PDF أو Word أو صورة — بحد أقصى 8 ميجابايت</div>
+          <div class="cv-name" id="cvName"></div>
+        </div>
+        <input type="file" id="f_cv" accept=".pdf,.doc,.docx,image/*" style="display:none">
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:22px">
+      <button type="button" class="btn btn-primary" id="submitBtn">📨 إرسال الطلب</button>
+    </div>
+  </div>
+
+  <!-- شاشة النجاح -->
+  <div class="card success" id="successCard">
+    <div class="ic">✅</div>
+    <h2>تم استلام طلبك بنجاح</h2>
+    <p>شكراً لتقديمك للعمل كمدرّب في ابدأ اديو. سيتم مراجعة طلبك والتواصل معك.</p>
+    <div>كود المتقدم:</div>
+    <div class="code" id="successCode">—</div>
+    <div style="margin-top:20px"><button type="button" class="btn btn-primary" onclick="location.reload()">تقديم طلب آخر</button></div>
+  </div>
+
+</div>
+<div class="toast" id="toast"></div>
+<script>
+// ====== رابط Apps Script (انشره ثم ضع الرابط هنا) ======
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbzPS76IKmqpKe4qYznysi9ngWLCHdEWs9wM1GJdseiifgEWn_9k6x_i7YsDxWICZ18X/exec";
+
+const GOVS = ["القاهرة","الجيزة","الإسكندرية","القليوبية","الشرقية","الدقهلية","البحيرة","المنوفية","الغربية","كفر الشيخ","دمياط","بورسعيد","الإسماعيلية","السويس","شمال سيناء","جنوب سيناء","بني سويف","الفيوم","المنيا","أسيوط","سوهاج","قنا","الأقصر","أسوان","البحر الأحمر","الوادي الجديد","مطروح"];
+
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
+
+// عبّئ المحافظات
+(function(){var s=document.getElementById('f_gov');GOVS.forEach(function(g){var o=document.createElement('option');o.value=g;o.textContent=g;s.appendChild(o);});})();
+
+// تخصص آخر
+document.getElementById('f_subspec').addEventListener('change',function(){
+  var oth=document.getElementById('f_subspec_other');
+  if(this.value==='__other__'){oth.style.display='block';oth.focus();}
+  else{oth.style.display='none';oth.value='';}
+});
+
+// رفع السيرة الذاتية
+var cvData=null;
+document.getElementById('f_cv').addEventListener('change',function(){
+  var f=this.files[0];if(!f)return;
+  if(f.size>8*1024*1024){toast('حجم الملف كبير (الحد 8 ميجابايت)');this.value='';return;}
+  var r=new FileReader();
+  r.onload=function(){
+    cvData={name:f.name,dataUrl:r.result};
+    var box=document.getElementById('cvBox');box.classList.add('has');
+    document.getElementById('cvName').textContent='✔ '+f.name;
+  };
+  r.readAsDataURL(f);
+});
+
+function val(id){var e=document.getElementById(id);return e?e.value.trim():'';}
+
+function submit(){
+  // تحقق من الحقول المطلوبة
+  var required=[['f_name','الاسم بالكامل'],['f_gender','النوع'],['f_mobile','رقم الموبايل'],['f_gov','المحافظة'],['f_mainspec','التخصص الرئيسي'],['f_subspec','التخصص الدقيق'],['f_qual','المؤهل العلمي'],['f_exp','سنوات الخبرة']];
+  for(var i=0;i<required.length;i++){
+    if(!val(required[i][0])){toast('من فضلك أدخل: '+required[i][1]);document.getElementById(required[i][0]).focus();return;}
+  }
+  var mobile=val('f_mobile');
+  if(!/^0?1[0-9]{9,10}$/.test(mobile.replace(/\s/g,''))){toast('رقم الموبايل غير صحيح');document.getElementById('f_mobile').focus();return;}
+  var subspec=val('f_subspec');
+  if(subspec==='__other__')subspec=val('f_subspec_other')||'أخرى';
+  if(!cvData){toast('من فضلك ارفع السيرة الذاتية (CV)');return;}
+
+  var payload={
+    name:val('f_name'), gender:val('f_gender'), mobile:mobile, email:val('f_email'),
+    gov:val('f_gov'), mainSpec:val('f_mainspec'), subSpec:subspec,
+    qualification:val('f_qual'), experience:val('f_exp'), tot:val('f_tot'),
+    contractType:val('f_contract'), expectedWage:val('f_wage'), source:val('f_source'),
+    notes:val('f_notes'), cv:cvData
+  };
+
+  if(!ENDPOINT||ENDPOINT.indexOf('ضع_هنا')===0){toast('لم يتم ضبط رابط الإرسال (ENDPOINT) بعد');return;}
+
+  var btn=document.getElementById('submitBtn');
+  btn.disabled=true;btn.textContent='⏳ جارٍ الإرسال...';
+  toast('جارٍ إرسال طلبك ورفع السيرة الذاتية...');
+
+  // JSONP لاستقبال كود المتقدم (يتجاوز قيود CORS على GitHub)
+  var cb='__ebda_job_'+Date.now();
+  var done=false;
+  window[cb]=function(res){
+    if(done)return;done=true;
+    finishOk(res&&res.code);
+  };
+  // نرسل عبر POST no-cors (لرفع الملف) ثم نقرأ الكود عبر جلب القائمة؟ لا:
+  // نستخدم fetch POST no-cors ونعرض نجاحاً عاماً (الكود يُنشأ في الخادم)
+  fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
+    .then(function(){ finishOk(null); })
+    .catch(function(){ toast('تعذّر الإرسال — تحقق من الاتصال'); btn.disabled=false; btn.textContent='📨 إرسال الطلب'; });
+}
+
+function finishOk(code){
+  document.getElementById('formCard').style.display='none';
+  var sc=document.getElementById('successCard');sc.style.display='block';
+  document.getElementById('successCode').textContent=code||'تم التسجيل ✓';
+  window.scrollTo(0,0);
+}
+
+document.getElementById('submitBtn').addEventListener('click',submit);
+
+// زر التقديم للوظيفة: يُظهر الاستمارة
+document.getElementById('applyBtn').addEventListener('click',function(){
+  var fc=document.getElementById('formCard');
+  fc.style.display='block';
+  fc.scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+// رفع شعار الشركة (يُحفظ على الجهاز)
+(function(){
+  var LK='ebda_company_logo';
+  function apply(url){if(!url)return;var img=document.getElementById('logoImg');img.src=url;img.style.display='block';document.getElementById('logoPlaceholder').style.display='none';}
+  try{var saved=localStorage.getItem(LK);if(saved)apply(saved);}catch(e){}
+  var inp=document.getElementById('logoInput');
+  if(inp)inp.addEventListener('change',function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){apply(r.result);try{localStorage.setItem(LK,r.result);}catch(e){}toast('تم حفظ الشعار');};r.readAsDataURL(f);});
+})();
+</script>
+</body>
+</html>
