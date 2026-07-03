@@ -82,12 +82,10 @@ window.onerror=function(msg,src,line){
   <p>مشروع تشغيل وإدارة مراكز التدريب المهني — وزارة العمل (EVOTS)</p>
 </header>
 <div class="wrap">
-
   <!-- الإعلان والشروط -->
   <div class="card">
     <h2 class="sec">📢 عن الوظيفة</h2>
     <p class="intro">تعلن <b>شركة ابدأ اديو للتطوير والتدريب</b> عن حاجتها إلى <b>مدربين مؤهلين</b> في مختلف التخصصات الفنية والمهنية والحياتية، للعمل ضمن مراكز التدريب المهني المنتشرة في محافظات الجمهورية.</p>
-
     <h2 class="sec" style="margin-top:20px">✅ شروط الالتحاق</h2>
     <ul class="cond">
       <li>مؤهل علمي مناسب للتخصص المتقدَّم له (فني / متوسط / عالٍ حسب الوظيفة).</li>
@@ -98,7 +96,6 @@ window.onerror=function(msg,src,line){
       <li>الاستعداد للعمل في المركز التابع لمحافظة المتقدم أو القريب منها.</li>
       <li>إرفاق السيرة الذاتية محدّثة (CV).</li>
     </ul>
-
     <h2 class="sec" style="margin-top:20px">🧰 التخصصات المطلوبة</h2>
     <div class="spec-cats">
       <div class="spec-cat">
@@ -172,7 +169,6 @@ window.onerror=function(msg,src,line){
       <button type="button" class="btn btn-primary" id="applyBtn">🚀 التقديم للوظيفة</button>
     </div>
   </div>
-
   <!-- استمارة التقديم -->
   <div class="card" id="formCard" style="display:none">
     <h2 class="sec">📝 استمارة التقديم</h2>
@@ -193,68 +189,7 @@ window.onerror=function(msg,src,line){
           <option>إدارة الأعمال</option>
         </select></div>
       <div class="field"><label>التخصص الدقيق <span class="req">*</span></label>
-        <select id="f_subspec"><option value="">— اختر التخصص الدقيق —</option>
-          <option>تفصيل وخياطة</option>
-          <option>تبريد وتكييف</option>
-          <option>صيانة أجهزة منزلية</option>
-          <option>لحام</option>
-          <option>خراطة</option>
-          <option>صيانة أجهزة محمول</option>
-          <option>نجارة</option>
-          <option>ميكانيكا السيارات</option>
-          <option>الحاسب الآلي</option>
-          <option>سباكة</option>
-          <option>كهرباء</option>
-          <option>الوميتال</option>
-          <option>رسم وزخرفة</option>
-          <option>صيانة حاسب آلي</option>
-          <option>دش ومحمول</option>
-          <option>لغات</option>
-          <option>طاقة شمسية</option>
-          <option>حدادة</option>
-          <option>تطريز</option>
-          <option>خرز</option>
-          <option>كروشيه</option>
-          <option>أرابيسك</option>
-          <option>إلكترونيات</option>
-          <option>فندقة</option>
-          <option>مشغولات يدوية</option>
-          <option>لف موتورات</option>
-          <option>مهارات حياتية</option>
-          <option>مهارات سلوكية (Soft Skills)</option>
-          <option>تكنولوجيا المعلومات (IT)</option>
-          <option>البرمجة</option>
-          <option>التصميم الجرافيكي</option>
-          <option>التسويق الإلكتروني</option>
-          <option>المحاسبة وبرامجها</option>
-          <option>إدارة الأعمال</option>
-          <option>خدمة العملاء والكول سنتر</option>
-          <option>التجميل والكوافير</option>
-          <option>العناية بالبشرة (سكين كير)</option>
-          <option>الطهي والإنتاج الغذائي</option>
-          <option>الحلويات والمخبوزات</option>
-          <option>الفندقة والضيافة</option>
-          <option>السياحة والإرشاد</option>
-          <option>التطريز والأشغال اليدوية</option>
-          <option>الموبيليا والديكور</option>
-          <option>تكييف وتبريد متقدم</option>
-          <option>الطاقة المتجددة</option>
-          <option>صيانة المعدات الطبية</option>
-          <option>اللحام المتقدم (أرجون/CO2)</option>
-          <option>السلامة والصحة المهنية</option>
-          <option>الاتصالات</option>
-          <option>اللوجستيات وسلاسل الإمداد</option>
-          <option>عمالة تحميل وتنزيل حاويات الموانئ</option>
-          <option>الشبكات</option>
-          <option>الأمن السيبراني</option>
-          <option>الفنون الرقمية</option>
-          <option>الروبوتات والأنظمة المدمجة (Embedded)</option>
-          <option>الذكاء الاصطناعي (AI)</option>
-          <option>محاضر لغة إنجليزية</option>
-          <option>محاضر لغة إيطالية</option>
-          <option>محاضر لغة ألمانية</option>
-          <option value="__other__">تخصص آخر (اكتبه)</option>
-        </select>
+        <select id="f_subspec"><option value="">— اختر التخصص الرئيسي أولاً —</option></select>
         <input id="f_subspec_other" placeholder="اكتب تخصصك الدقيق" style="display:none;margin-top:6px">
       </div>
       <div class="field"><label>المؤهل العلمي <span class="req">*</span></label>
@@ -297,7 +232,6 @@ window.onerror=function(msg,src,line){
           <option>أخرى</option>
         </select></div>
       <div class="field full"><label>ملاحظات إضافية</label><textarea id="f_notes" rows="2" placeholder="أي معلومات تودّ إضافتها"></textarea></div>
-
       <div class="field full"><label>السيرة الذاتية (CV) <span class="req">*</span></label>
         <div class="cv-box" id="cvBox" onclick="document.getElementById('f_cv').click()">
           <div>📄 اضغط لرفع ملف السيرة الذاتية</div>
@@ -311,7 +245,6 @@ window.onerror=function(msg,src,line){
       <button type="button" class="btn btn-primary" id="submitBtn">📨 إرسال الطلب</button>
     </div>
   </div>
-
   <!-- شاشة النجاح -->
   <div class="card success" id="successCard">
     <div class="ic">✅</div>
@@ -321,27 +254,54 @@ window.onerror=function(msg,src,line){
     <div class="code" id="successCode">—</div>
     <div style="margin-top:20px"><button type="button" class="btn btn-primary" onclick="location.reload()">تقديم طلب آخر</button></div>
   </div>
-
 </div>
 <div class="toast" id="toast"></div>
 <script>
 // ====== رابط Apps Script (انشره ثم ضع الرابط هنا) ======
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbzPS76IKmqpKe4qYznysi9ngWLCHdEWs9wM1GJdseiifgEWn_9k6x_i7YsDxWICZ18X/exec";
-
 const GOVS = ["القاهرة","الجيزة","الإسكندرية","القليوبية","الشرقية","الدقهلية","البحيرة","المنوفية","الغربية","كفر الشيخ","دمياط","بورسعيد","الإسماعيلية","السويس","شمال سيناء","جنوب سيناء","بني سويف","الفيوم","المنيا","أسيوط","سوهاج","قنا","الأقصر","أسوان","البحر الأحمر","الوادي الجديد","مطروح"];
-
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
-
 // عبّئ المحافظات
 (function(){var s=document.getElementById('f_gov');GOVS.forEach(function(g){var o=document.createElement('option');o.value=g;o.textContent=g;s.appendChild(o);});})();
-
-// تخصص آخر
+// خريطة التخصص الرئيسي → التخصصات الدقيقة التابعة له
+var SUBSPECS={
+  "التدريب الفني":[
+    "تفصيل وخياطة","تبريد وتكييف","تكييف وتبريد متقدم","صيانة أجهزة منزلية","صيانة أجهزة محمول",
+    "لحام","اللحام المتقدم (أرجون/CO2)","خراطة","حدادة","نجارة","سباكة","كهرباء","ميكانيكا السيارات",
+    "الوميتال","لف موتورات","إلكترونيات","دش ومحمول","رسم وزخرفة","تطريز","خرز","كروشيه","أرابيسك",
+    "مشغولات يدوية","الموبيليا والديكور","التطريز والأشغال اليدوية","طاقة شمسية","الطاقة المتجددة",
+    "الاتصالات","صيانة المعدات الطبية","السلامة والصحة المهنية","اللوجستيات وسلاسل الإمداد",
+    "عمالة تحميل وتنزيل حاويات الموانئ","الحاسب الآلي","صيانة حاسب آلي","تكنولوجيا المعلومات (IT)",
+    "البرمجة","الشبكات","الأمن السيبراني","الروبوتات والأنظمة المدمجة (Embedded)","الذكاء الاصطناعي (AI)",
+    "التصميم الجرافيكي","الفنون الرقمية","التجميل والكوافير","العناية بالبشرة (سكين كير)",
+    "الطهي والإنتاج الغذائي","الحلويات والمخبوزات","الفندقة والضيافة","فندقة","السياحة والإرشاد"
+  ],
+  "المهارات الحياتية":[
+    "مهارات حياتية","مهارات سلوكية (Soft Skills)"
+  ],
+  "اللغات":[
+    "لغات","محاضر لغة إنجليزية","محاضر لغة إيطالية","محاضر لغة ألمانية"
+  ],
+  "إدارة الأعمال":[
+    "إدارة الأعمال","المحاسبة وبرامجها","التسويق الإلكتروني","خدمة العملاء والكول سنتر"
+  ]
+};
+// عند اختيار التخصص الرئيسي: املأ التخصص الدقيق بما يخصّه فقط
+document.getElementById('f_mainspec').addEventListener('change',function(){
+  var main=this.value;
+  var sub=document.getElementById('f_subspec');
+  sub.innerHTML='<option value="">— اختر التخصص الدقيق —</option>';
+  var list=SUBSPECS[main]||[];
+  list.forEach(function(s){var o=document.createElement('option');o.value=s;o.textContent=s;sub.appendChild(o);});
+  var o2=document.createElement('option');o2.value='__other__';o2.textContent='تخصص آخر (اكتبه)';sub.appendChild(o2);
+  var oth=document.getElementById('f_subspec_other');oth.style.display='none';oth.value='';
+});
+// إظهار خانة «تخصص آخر» عند اختياره
 document.getElementById('f_subspec').addEventListener('change',function(){
   var oth=document.getElementById('f_subspec_other');
   if(this.value==='__other__'){oth.style.display='block';oth.focus();}
   else{oth.style.display='none';oth.value='';}
 });
-
 // رفع السيرة الذاتية
 var cvData=null;
 document.getElementById('f_cv').addEventListener('change',function(){
@@ -355,9 +315,7 @@ document.getElementById('f_cv').addEventListener('change',function(){
   };
   r.readAsDataURL(f);
 });
-
 function val(id){var e=document.getElementById(id);return e?e.value.trim():'';}
-
 function submit(){
   // تحقق من الحقول المطلوبة
   var required=[['f_name','الاسم بالكامل'],['f_gender','النوع'],['f_mobile','رقم الموبايل'],['f_gov','المحافظة'],['f_mainspec','التخصص الرئيسي'],['f_subspec','التخصص الدقيق'],['f_qual','المؤهل العلمي'],['f_exp','سنوات الخبرة']];
@@ -369,7 +327,6 @@ function submit(){
   var subspec=val('f_subspec');
   if(subspec==='__other__')subspec=val('f_subspec_other')||'أخرى';
   if(!cvData){toast('من فضلك ارفع السيرة الذاتية (CV)');return;}
-
   var payload={
     name:val('f_name'), gender:val('f_gender'), mobile:mobile, email:val('f_email'),
     gov:val('f_gov'), mainSpec:val('f_mainspec'), subSpec:subspec,
@@ -377,43 +334,33 @@ function submit(){
     contractType:val('f_contract'), expectedWage:val('f_wage'), source:val('f_source'),
     notes:val('f_notes'), cv:cvData
   };
-
   if(!ENDPOINT||ENDPOINT.indexOf('ضع_هنا')===0){toast('لم يتم ضبط رابط الإرسال (ENDPOINT) بعد');return;}
-
   var btn=document.getElementById('submitBtn');
   btn.disabled=true;btn.textContent='⏳ جارٍ الإرسال...';
   toast('جارٍ إرسال طلبك ورفع السيرة الذاتية...');
-
-  // JSONP لاستقبال كود المتقدم (يتجاوز قيود CORS على GitHub)
   var cb='__ebda_job_'+Date.now();
   var done=false;
   window[cb]=function(res){
     if(done)return;done=true;
     finishOk(res&&res.code);
   };
-  // نرسل عبر POST no-cors (لرفع الملف) ثم نقرأ الكود عبر جلب القائمة؟ لا:
-  // نستخدم fetch POST no-cors ونعرض نجاحاً عاماً (الكود يُنشأ في الخادم)
   fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
     .then(function(){ finishOk(null); })
     .catch(function(){ toast('تعذّر الإرسال — تحقق من الاتصال'); btn.disabled=false; btn.textContent='📨 إرسال الطلب'; });
 }
-
 function finishOk(code){
   document.getElementById('formCard').style.display='none';
   var sc=document.getElementById('successCard');sc.style.display='block';
   document.getElementById('successCode').textContent=code||'تم التسجيل ✓';
   window.scrollTo(0,0);
 }
-
 document.getElementById('submitBtn').addEventListener('click',submit);
-
 // زر التقديم للوظيفة: يُظهر الاستمارة
 document.getElementById('applyBtn').addEventListener('click',function(){
   var fc=document.getElementById('formCard');
   fc.style.display='block';
   fc.scrollIntoView({behavior:'smooth',block:'start'});
 });
-
 // رفع شعار الشركة (يُحفظ على الجهاز)
 (function(){
   var LK='ebda_company_logo';
