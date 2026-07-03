@@ -19,10 +19,6 @@
   header h1{margin:0 0 4px;font-size:22px;}
   header .en-name{font-size:15px;font-weight:600;letter-spacing:.4px;opacity:.95;margin-bottom:6px;direction:ltr;}
   header p{margin:0;font-size:14px;opacity:.92;}
-  .logo-wrap{position:absolute;top:16px;left:20px;width:82px;height:70px;background:#fff;border:1.5px dashed #cfe3ea;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;padding:4px;}
-  .logo-wrap #logoPlaceholder{color:var(--blue-dark);font-weight:700;font-size:11px;text-align:center;line-height:1.3;}
-  .logo-wrap img{max-width:100%;max-height:100%;object-fit:contain;}
-  @media(max-width:560px){.logo-wrap{position:static;margin:0 auto 12px;}}
   .spec-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:14px;}
   .spec-cat{background:#fafdff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
   .spec-cat h4{margin:0 0 8px;color:var(--blue-dark);font-size:14.5px;border-bottom:1.5px solid var(--blue-soft);padding-bottom:6px;}
@@ -54,10 +50,12 @@
   .cv-box .cv-name{font-size:13px;color:var(--ok);font-weight:700;margin-top:6px;}
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--blue-dark);color:#fff;padding:13px 26px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:.3s;z-index:80;max-width:92%;text-align:center;}
   .toast.show{opacity:1;}
-  .success{display:none;text-align:center;padding:40px 20px;}
-  .success .ic{font-size:56px;}
-  .success h2{color:var(--ok);margin:10px 0;}
-  .success .code{background:var(--blue-soft);color:var(--blue-dark);font-weight:800;font-size:20px;padding:8px 18px;border-radius:10px;display:inline-block;margin-top:6px;}
+  .success{display:none;text-align:center;padding:60px 24px;position:fixed;inset:0;z-index:9999;background:var(--bg);align-items:center;justify-content:center;flex-direction:column;}
+  .success.show{display:flex;}
+  .success .ic{font-size:72px;}
+  .success h2{color:var(--ok);margin:14px 0;font-size:26px;}
+  .success p{max-width:520px;font-size:16px;color:#333;}
+  .success .code{background:var(--blue-soft);color:var(--blue-dark);font-weight:800;font-size:22px;padding:10px 22px;border-radius:12px;display:inline-block;margin-top:8px;}
 </style>
 </head>
 <body>
@@ -72,11 +70,6 @@ window.onerror=function(msg,src,line){
 </script>
 <div class="bar"></div>
 <header>
-  <div class="logo-wrap" id="logoWrap" onclick="document.getElementById('logoInput').click()" title="اضغط لإضافة شعار الشركة">
-    <span id="logoPlaceholder">شعار<br>الشركة</span>
-    <img id="logoImg" style="display:none" alt="شعار الشركة">
-  </div>
-  <input type="file" id="logoInput" accept="image/*" style="display:none">
   <h1>الإعلان عن وظائف مدربين — ابدأ اديو</h1>
   <div class="en-name">EBDA EDU for Development &amp; Training</div>
   <p>مشروع تشغيل وإدارة مراكز التدريب المهني — وزارة العمل (EVOTS)</p>
@@ -240,17 +233,16 @@ window.onerror=function(msg,src,line){
   <!-- شاشة النجاح -->
   <div class="card success" id="successCard">
     <div class="ic">✅</div>
-    <h2>تم استلام طلبك بنجاح</h2>
-    <p>شكراً لتقديمك للعمل كمدرّب في ابدأ اديو. سيتم مراجعة طلبك والتواصل معك.</p>
-    <div>كود المتقدم:</div>
+    <h2>تم التقديم للوظيفة بنجاح</h2>
+    <p>شكراً لتقديمك للعمل كمدرّب في ابدأ اديو. تم استلام طلبك وسيراجعه فريقنا ويتم التواصل معك عند الحاجة.</p>
+    <div style="margin-top:6px">كود المتقدم:</div>
     <div class="code" id="successCode">—</div>
-    <div style="margin-top:20px"><button type="button" class="btn btn-primary" onclick="location.reload()">تقديم طلب آخر</button></div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
 <script>
 // ====== رابط Apps Script (انشره ثم ضع الرابط هنا) ======
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbzYIR-gKbu2mv1qyi3exqTjgIihJFjFqbBzLGhB-Z7CGzuRBQ0HtBlIFM5vaUBhhYw/exec";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbzPS76IKmqpKe4qYznysi9ngWLCHdEWs9wM1GJdseiifgEWn_9k6x_i7YsDxWICZ18X/exec";
 const GOVS = ["القاهرة","الجيزة","الإسكندرية","القليوبية","الشرقية","الدقهلية","البحيرة","المنوفية","الغربية","كفر الشيخ","دمياط","بورسعيد","الإسماعيلية","السويس","شمال سيناء","جنوب سيناء","بني سويف","الفيوم","المنيا","أسيوط","سوهاج","قنا","الأقصر","أسوان","البحر الأحمر","الوادي الجديد","مطروح"];
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
 // عبّئ المحافظات
@@ -354,7 +346,8 @@ function submit(){
 }
 function finishOk(code){
   document.getElementById('formCard').style.display='none';
-  var sc=document.getElementById('successCard');sc.style.display='block';
+  var sc=document.getElementById('successCard');
+  sc.classList.add('show');
   document.getElementById('successCode').textContent=code||'تم التسجيل ✓';
   window.scrollTo(0,0);
 }
@@ -365,14 +358,6 @@ document.getElementById('applyBtn').addEventListener('click',function(){
   fc.style.display='block';
   fc.scrollIntoView({behavior:'smooth',block:'start'});
 });
-// رفع شعار الشركة (يُحفظ على الجهاز)
-(function(){
-  var LK='ebda_company_logo';
-  function apply(url){if(!url)return;var img=document.getElementById('logoImg');img.src=url;img.style.display='block';document.getElementById('logoPlaceholder').style.display='none';}
-  try{var saved=localStorage.getItem(LK);if(saved)apply(saved);}catch(e){}
-  var inp=document.getElementById('logoInput');
-  if(inp)inp.addEventListener('change',function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){apply(r.result);try{localStorage.setItem(LK,r.result);}catch(e){}toast('تم حفظ الشعار');};r.readAsDataURL(f);});
-})();
 </script>
 </body>
 </html>
