@@ -250,7 +250,7 @@ window.onerror=function(msg,src,line){
 <div class="toast" id="toast"></div>
 <script>
 // ====== رابط Apps Script (انشره ثم ضع الرابط هنا) ======
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbzPS76IKmqpKe4qYznysi9ngWLCHdEWs9wM1GJdseiifgEWn_9k6x_i7YsDxWICZ18X/exec";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbzYIR-gKbu2mv1qyi3exqTjgIihJFjFqbBzLGhB-Z7CGzuRBQ0HtBlIFM5vaUBhhYw/exec";
 const GOVS = ["القاهرة","الجيزة","الإسكندرية","القليوبية","الشرقية","الدقهلية","البحيرة","المنوفية","الغربية","كفر الشيخ","دمياط","بورسعيد","الإسماعيلية","السويس","شمال سيناء","جنوب سيناء","بني سويف","الفيوم","المنيا","أسيوط","سوهاج","قنا","الأقصر","أسوان","البحر الأحمر","الوادي الجديد","مطروح"];
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
 // عبّئ المحافظات
@@ -308,7 +308,12 @@ document.getElementById('f_cv').addEventListener('change',function(){
   r.readAsDataURL(f);
 });
 function val(id){var e=document.getElementById(id);return e?e.value.trim():'';}
+// منع تكرار التقديم: تخزين أرقام الموبايل التي قدّمت من هذا الجهاز
+function submittedMobiles(){try{return JSON.parse(localStorage.getItem('ebda_job_submitted')||'[]');}catch(e){return [];}}
+function markSubmitted(m){try{var a=submittedMobiles();if(a.indexOf(m)<0){a.push(m);localStorage.setItem('ebda_job_submitted',JSON.stringify(a));}}catch(e){}}
+var isSubmitting=false;
 function submit(){
+  if(isSubmitting){toast('جارٍ إرسال طلبك بالفعل...');return;}
   // تحقق من الحقول المطلوبة
   var required=[['f_name','الاسم بالكامل'],['f_gender','النوع'],['f_mobile','رقم الموبايل'],['f_gov','المحافظة'],['f_mainspec','التخصص الرئيسي'],['f_subspec','التخصص الدقيق'],['f_qual','المؤهل العلمي'],['f_exp','سنوات الخبرة']];
   for(var i=0;i<required.length;i++){
@@ -316,6 +321,11 @@ function submit(){
   }
   var mobile=val('f_mobile');
   if(!/^0?1[0-9]{9,10}$/.test(mobile.replace(/\s/g,''))){toast('رقم الموبايل غير صحيح');document.getElementById('f_mobile').focus();return;}
+  // منع التكرار من نفس الجهاز
+  if(submittedMobiles().indexOf(mobile)>=0){
+    toast('سبق تقديم طلب بهذا الرقم من هذا الجهاز. لا يمكن التقديم مرتين.');
+    return;
+  }
   var subspec=val('f_subspec');
   if(subspec==='__other__')subspec=val('f_subspec_other')||'أخرى';
   if(!cvData){toast('من فضلك ارفع السيرة الذاتية (CV)');return;}
@@ -327,6 +337,7 @@ function submit(){
     notes:val('f_notes'), cv:cvData
   };
   if(!ENDPOINT||ENDPOINT.indexOf('ضع_هنا')===0){toast('لم يتم ضبط رابط الإرسال (ENDPOINT) بعد');return;}
+  isSubmitting=true;
   var btn=document.getElementById('submitBtn');
   btn.disabled=true;btn.textContent='⏳ جارٍ الإرسال...';
   toast('جارٍ إرسال طلبك ورفع السيرة الذاتية...');
@@ -334,11 +345,12 @@ function submit(){
   var done=false;
   window[cb]=function(res){
     if(done)return;done=true;
+    markSubmitted(mobile);
     finishOk(res&&res.code);
   };
   fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
-    .then(function(){ finishOk(null); })
-    .catch(function(){ toast('تعذّر الإرسال — تحقق من الاتصال'); btn.disabled=false; btn.textContent='📨 إرسال الطلب'; });
+    .then(function(){ markSubmitted(mobile); finishOk(null); })
+    .catch(function(){ isSubmitting=false; toast('تعذّر الإرسال — تحقق من الاتصال'); btn.disabled=false; btn.textContent='📨 إرسال الطلب'; });
 }
 function finishOk(code){
   document.getElementById('formCard').style.display='none';
