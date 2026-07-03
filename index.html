@@ -193,15 +193,7 @@ window.onerror=function(msg,src,line){
         <input id="f_subspec_other" placeholder="اكتب تخصصك الدقيق" style="display:none;margin-top:6px">
       </div>
       <div class="field"><label>المؤهل العلمي <span class="req">*</span></label>
-        <select id="f_qual"><option value="">— اختر —</option>
-          <option>دبلوم فني / صنايع</option>
-          <option>دبلوم متوسط</option>
-          <option>دبلوم فوق المتوسط</option>
-          <option>بكالوريوس / ليسانس</option>
-          <option>دراسات عليا / ماجستير</option>
-          <option>دكتوراه</option>
-          <option>أخرى</option>
-        </select></div>
+        <input id="f_qual" placeholder="اكتب مؤهلك العلمي بالتفصيل"></div>
       <div class="field"><label>سنوات الخبرة <span class="req">*</span></label>
         <select id="f_exp"><option value="">— اختر —</option>
           <option>أقل من سنة</option>
@@ -280,10 +272,10 @@ var SUBSPECS={
     "مهارات حياتية","مهارات سلوكية (Soft Skills)"
   ],
   "اللغات":[
-    "لغات","محاضر لغة إنجليزية","محاضر لغة إيطالية","محاضر لغة ألمانية"
+    "محاضر لغة إنجليزية","محاضر لغة إيطالية","محاضر لغة ألمانية"
   ],
   "إدارة الأعمال":[
-    "إدارة الأعمال","المحاسبة وبرامجها","التسويق الإلكتروني","خدمة العملاء والكول سنتر"
+    "المحاسبة وبرامجها","التسويق الإلكتروني","خدمة العملاء والكول سنتر"
   ]
 };
 // عند اختيار التخصص الرئيسي: املأ التخصص الدقيق بما يخصّه فقط
