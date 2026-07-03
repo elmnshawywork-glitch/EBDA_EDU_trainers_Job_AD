@@ -16,6 +16,7 @@
   body{margin:0;background:var(--bg);color:var(--ink);direction:rtl;line-height:1.75;}
   .bar{height:5px;background:var(--blue);}
   header{background:var(--blue-dark);color:#fff;padding:26px 20px;text-align:center;position:relative;}
+  header .logo{width:84px;height:84px;border-radius:16px;background:#fff;padding:8px;object-fit:contain;display:block;margin:0 auto 12px;}
   header h1{margin:0 0 4px;font-size:22px;}
   header .en-name{font-size:15px;font-weight:600;letter-spacing:.4px;opacity:.95;margin-bottom:6px;direction:ltr;}
   header p{margin:0;font-size:14px;opacity:.92;}
@@ -64,12 +65,13 @@
 window.onerror=function(msg,src,line){
   if(!msg||/Script error/i.test(String(msg))||(line===0&&!src))return false;
   var b=document.getElementById('errBox');
-  if(b){b.style.display='block';b.innerHTML+='<div>⚠️ '+msg+' (سطر '+line+')</div>';}
+  if(b){b.style.display='block';b.innerHTML+='<div>'+msg+' (سطر '+line+')</div>';}
   return false;
 };
 </script>
 <div class="bar"></div>
 <header>
+  <img class="logo" src="data:image/jpeg;base64,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" alt="EBDA EDU">
   <h1>الإعلان عن وظائف مدربين — ابدأ اديو</h1>
   <div class="en-name">EBDA EDU for Development &amp; Training</div>
   <p>مشروع تشغيل وإدارة مراكز التدريب المهني — وزارة العمل (EVOTS)</p>
@@ -77,9 +79,9 @@ window.onerror=function(msg,src,line){
 <div class="wrap">
   <!-- الإعلان والشروط -->
   <div class="card">
-    <h2 class="sec">📢 عن الوظيفة</h2>
+    <h2 class="sec">عن الوظيفة</h2>
     <p class="intro">تعلن <b>شركة ابدأ اديو للتطوير والتدريب</b> عن حاجتها إلى <b>مدربين مؤهلين</b> في مختلف التخصصات الفنية والمهنية والحياتية، للعمل ضمن مراكز التدريب المهني المنتشرة في محافظات الجمهورية.</p>
-    <h2 class="sec" style="margin-top:20px">✅ شروط الالتحاق</h2>
+    <h2 class="sec" style="margin-top:20px">شروط الالتحاق</h2>
     <ul class="cond">
       <li>مؤهل علمي مناسب للتخصص المتقدَّم له (فني / متوسط / عالٍ حسب الوظيفة).</li>
       <li>خبرة عملية أو تدريبية سابقة في مجال التخصص.</li>
@@ -89,10 +91,10 @@ window.onerror=function(msg,src,line){
       <li>الاستعداد للعمل في المركز التابع لمحافظة المتقدم أو القريب منها.</li>
       <li>إرفاق السيرة الذاتية محدّثة (CV).</li>
     </ul>
-    <h2 class="sec" style="margin-top:20px">🧰 التخصصات المطلوبة</h2>
+    <h2 class="sec" style="margin-top:20px">التخصصات المطلوبة</h2>
     <div class="spec-cats">
       <div class="spec-cat">
-        <h4>🔧 التخصصات الفنية والصناعية</h4>
+        <h4>التخصصات الفنية والصناعية</h4>
         <ul>
           <li>كهرباء</li><li>لحام</li><li>اللحام المتقدم (أرجون/CO2)</li>
           <li>خراطة</li><li>حدادة</li><li>سباكة</li><li>نجارة</li>
@@ -103,7 +105,7 @@ window.onerror=function(msg,src,line){
         </ul>
       </div>
       <div class="spec-cat">
-        <h4>💻 تكنولوجيا المعلومات والتصميم</h4>
+        <h4>تكنولوجيا المعلومات والتصميم</h4>
         <ul>
           <li>الحاسب الآلي</li><li>صيانة حاسب آلي</li>
           <li>تكنولوجيا المعلومات (IT)</li><li>البرمجة</li>
@@ -115,7 +117,7 @@ window.onerror=function(msg,src,line){
         </ul>
       </div>
       <div class="spec-cat">
-        <h4>🌍 الطاقة والاتصالات والسلامة</h4>
+        <h4>الطاقة والاتصالات والسلامة</h4>
         <ul>
           <li>طاقة شمسية</li><li>الطاقة المتجددة</li>
           <li>الاتصالات</li><li>صيانة المعدات الطبية</li>
@@ -125,7 +127,7 @@ window.onerror=function(msg,src,line){
         </ul>
       </div>
       <div class="spec-cat">
-        <h4>✂️ الحرف والمشغولات</h4>
+        <h4>الحرف والمشغولات</h4>
         <ul>
           <li>تفصيل وخياطة</li><li>تطريز</li>
           <li>التطريز والأشغال اليدوية</li><li>كروشيه</li>
@@ -134,7 +136,7 @@ window.onerror=function(msg,src,line){
         </ul>
       </div>
       <div class="spec-cat">
-        <h4>🍽️ الضيافة والتجميل</h4>
+        <h4>الضيافة والتجميل</h4>
         <ul>
           <li>الطهي والإنتاج الغذائي</li>
           <li>الحلويات والمخبوزات</li>
@@ -145,7 +147,7 @@ window.onerror=function(msg,src,line){
         </ul>
       </div>
       <div class="spec-cat">
-        <h4>📊 الإدارة والمهارات واللغات</h4>
+        <h4>الإدارة والمهارات واللغات</h4>
         <ul>
           <li>إدارة الأعمال</li><li>المحاسبة وبرامجها</li>
           <li>خدمة العملاء والكول سنتر</li>
@@ -159,12 +161,12 @@ window.onerror=function(msg,src,line){
     </div>
     <p class="hint" style="margin-top:10px">اختر تخصصك الدقيق من القائمة داخل الاستمارة، أو اكتبه في «تخصص آخر» إن لم تجده.</p>
     <div style="text-align:center;margin-top:18px">
-      <button type="button" class="btn btn-primary" id="applyBtn">🚀 التقديم للوظيفة</button>
+      <button type="button" class="btn btn-primary" id="applyBtn">التقديم للوظيفة</button>
     </div>
   </div>
   <!-- استمارة التقديم -->
   <div class="card" id="formCard" style="display:none">
-    <h2 class="sec">📝 استمارة التقديم</h2>
+    <h2 class="sec">استمارة التقديم</h2>
     <p class="hint">الحقول المميّزة بـ <span style="color:#c0392b">*</span> مطلوبة. تُسجَّل بياناتك مباشرة في قاعدة بيانات المدربين.</p>
     <div class="grid">
       <div class="field"><label>الاسم بالكامل <span class="req">*</span></label><input id="f_name" placeholder="الاسم رباعي"></div>
@@ -219,7 +221,7 @@ window.onerror=function(msg,src,line){
       <div class="field full"><label>ملاحظات إضافية</label><textarea id="f_notes" rows="2" placeholder="أي معلومات تودّ إضافتها"></textarea></div>
       <div class="field full"><label>السيرة الذاتية (CV) <span class="req">*</span></label>
         <div class="cv-box" id="cvBox" onclick="document.getElementById('f_cv').click()">
-          <div>📄 اضغط لرفع ملف السيرة الذاتية</div>
+          <div>اضغط لرفع ملف السيرة الذاتية</div>
           <div class="hint">PDF أو Word أو صورة — بحد أقصى 8 ميجابايت</div>
           <div class="cv-name" id="cvName"></div>
         </div>
@@ -227,7 +229,7 @@ window.onerror=function(msg,src,line){
       </div>
     </div>
     <div style="text-align:center;margin-top:22px">
-      <button type="button" class="btn btn-primary" id="submitBtn">📨 إرسال الطلب</button>
+      <button type="button" class="btn btn-primary" id="submitBtn">إرسال الطلب</button>
     </div>
   </div>
   <!-- شاشة النجاح -->
@@ -295,7 +297,7 @@ document.getElementById('f_cv').addEventListener('change',function(){
   r.onload=function(){
     cvData={name:f.name,dataUrl:r.result};
     var box=document.getElementById('cvBox');box.classList.add('has');
-    document.getElementById('cvName').textContent='✔ '+f.name;
+    document.getElementById('cvName').textContent=f.name;
   };
   r.readAsDataURL(f);
 });
@@ -331,7 +333,7 @@ function submit(){
   if(!ENDPOINT||ENDPOINT.indexOf('ضع_هنا')===0){toast('لم يتم ضبط رابط الإرسال (ENDPOINT) بعد');return;}
   isSubmitting=true;
   var btn=document.getElementById('submitBtn');
-  btn.disabled=true;btn.textContent='⏳ جارٍ الإرسال...';
+  btn.disabled=true;btn.textContent='جارٍ الإرسال...';
   toast('جارٍ إرسال طلبك ورفع السيرة الذاتية...');
   var cb='__ebda_job_'+Date.now();
   var done=false;
@@ -342,7 +344,7 @@ function submit(){
   };
   fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
     .then(function(){ markSubmitted(mobile); finishOk(null); })
-    .catch(function(){ isSubmitting=false; toast('تعذّر الإرسال — تحقق من الاتصال'); btn.disabled=false; btn.textContent='📨 إرسال الطلب'; });
+    .catch(function(){ isSubmitting=false; toast('تعذّر الإرسال — تحقق من الاتصال'); btn.disabled=false; btn.textContent='إرسال الطلب'; });
 }
 function finishOk(code){
   document.getElementById('formCard').style.display='none';
